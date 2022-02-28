@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-
+import os
 app = Flask(__name__)
 
 
@@ -11,5 +11,6 @@ def hello_world():
 
 
 @app.route('/download', methods=['POST'])
-def login():
+def download():
+    os.system(f"yt-dlp -x  --audio-format mp3 {request.form['url']}")
     return render_template('download.html',url=request.form['url'])
