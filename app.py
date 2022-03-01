@@ -23,11 +23,15 @@ def download():
     p = Popen(f'aws s3 cp {name}  s3://becem-youtube-app  --content-disposition=attachment',shell=True)
     p.wait()
     print('COMPLETED')
-    f=open('logs.txt','a')
-    f.write("**********************************************************************************************\n")
-    f.write(output)
-    f.write("**********************************************************************************************\n\n\n\n")
-    f.close()
+    writeLogs(output)
     #os.system(f"aws s3 cp b.mp3 s3://becem-youtube-app  --content-disposition=attachment")
     url = "https://becem-youtube-app.s3.eu-west-3.amazonaws.com/"+name
     return render_template('download.html', url=url)
+
+
+def writeLogs(logs):
+    f = open('logs.txt', 'a')
+    f.write("**********************************************************************************************\n")
+    f.write(logs)
+    f.write("**********************************************************************************************\n\n\n\n")
+    f.close()
