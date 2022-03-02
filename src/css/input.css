@@ -17,3 +17,6 @@
 .title span { 
     padding:0 10px; 
 }
+.myform input , .myform textarea{
+    @apply p-2 outline-1 outline shadow-sm
+}
